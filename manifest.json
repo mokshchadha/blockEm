@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "BlockEm",
+  "description": "Block the list of urls selected by the users.",
+  "version": "1.0",
+  "author": "Sampurna Chapagain",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Block Unwanted URLs",
+    "default_icon": {
+      "16": "images/icon-16.png",
+      "32": "images/icon-32.png",
+      "48": "images/icon-48.png",
+      "128": "images/icon-128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+    "16": "images/icon-16.png",
+    "32": "images/icon-32.png",
+    "48": "images/icon-48.png",
+    "128": "images/icon-128.png"
+  },
+
+  "permissions": ["scripting", "activeTab", "storage"]
+}
