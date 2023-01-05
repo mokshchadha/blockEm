@@ -35,6 +35,8 @@ function appendValuesInLocalStorage(existingUrls) {
 
   setUrlArray(newUrls);
   createList(newUrls);
+  blockedInput.value = "";
+  redirectInput.value = "";
 }
 
 function removeButtons() {
