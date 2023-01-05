@@ -4,7 +4,7 @@ async function main() {
     console.log("running set interval");
     const currentUrl = window.location.href;
     const blockedUrl = existingUrls.find((e) => currentUrl.includes(e.blocked));
-    console.log({ blockedUrl, existingUrls });
+    console.log({ blockedUrl, existingUrls, currentUrl });
     if (!blockedUrl) return;
     window.location.href = blockedUrl.redirect;
   }, 1000);

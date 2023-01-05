@@ -2,7 +2,7 @@ async function main() {
   const existingUrls = await getUrlArray();
   const addButton = document.getElementById("add");
   addButton.onclick = () => appendValuesInLocalStorage(existingUrls);
-  createList();
+  createList(existingUrls);
   removeButtons();
 }
 
@@ -65,10 +65,17 @@ function createList(existingUrls) {
 }
 
 function setUrlArray(array) {
-  localStorage.setItem("blockEmUrls", JSON.stringify(array));
+  const sanitisedArray = array
+    .map((e) => ({
+      blocked: e.blocked.trim(),
+      redirect: e.redirect.trim(),
+    }))
+    .filter((e) => e.blocked && e.redirect);
+
+  localStorage.setItem("blockEmUrls", JSON.stringify(sanitisedArray));
   if (chrome.storage.local) {
     chrome.storage.local
-      .set({ blockEmUrls: JSON.stringify(array) })
+      .set({ blockEmUrls: JSON.stringify(sanitisedArray) })
       .then((e) => console.log("saved in the storage"));
   }
 }
