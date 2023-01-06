@@ -1,13 +1,18 @@
-async function main() {
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (
+    request.messageId ===
+    "run_the_main_script_1b537bc7-dd23-4958-993a-5134c421120d"
+  ) {
+    checkCurrentUrl();
+  }
+});
+
+async function checkCurrentUrl() {
   const existingUrls = await getUrlArray();
-  setInterval(() => {
-    console.log("running set interval");
-    const currentUrl = window.location.href;
-    const blockedUrl = existingUrls.find((e) => currentUrl.includes(e.blocked));
-    console.log({ blockedUrl, existingUrls, currentUrl });
-    if (!blockedUrl) return;
-    window.location.href = blockedUrl.redirect;
-  }, 1000);
+  const currentUrl = window.location.href;
+  const blockedUrl = existingUrls.find((e) => currentUrl.includes(e.blocked));
+  if (!blockedUrl) return;
+  window.location.href = blockedUrl.redirect;
 }
 
 async function getUrlArray() {
@@ -22,5 +27,3 @@ async function getUrlArray() {
   }
   return existingData ? existingData : [];
 }
-
-main();

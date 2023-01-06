@@ -95,14 +95,16 @@ button:hover{
 
 .blocked-url{
     background-color: #ffebee;
-    font-size: 1.25rem;
+    font-size: 1rem;
     padding:.5rem 1.5rem;
     border-radius: 0.5rem;
+    font-family: monospace;
 }
 
 .redirect-url{
  background-color: #b3e5fc;
- font-size: 1.25rem;
+ font-size: 1rem;
  padding:.5rem 1.5rem;
  border-radius: 0.5rem;
+ font-family: monospace;
 }
